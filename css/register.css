@@ -1,0 +1,46 @@
+.pagewrap{
+  width: 1000px;
+  margin: auto;
+  border-style: dotted;
+  height: auto;
+
+}
+
+.clearfix{
+  display: block;
+  content: " ";
+  clear: both;
+}
+
+.largerbody {
+  border-style: dashed;
+  height: auto;
+  width: 950px;
+  margin: auto;
+}
+
+.header {
+  height: 100px;
+  border-style: solid;
+  width: 920px;
+  align-self: center;
+  position: relative;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+}
+.info {
+  height: 700px;
+  border-style: solid;
+  width: 920px;
+  align-self: center;
+  position: relative;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+
+}

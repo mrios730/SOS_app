@@ -1,0 +1,41 @@
+body{
+
+}
+.Login{
+border-style: solid;
+height: 100px;
+width: 300px;
+float: left;
+border-radius: 20px;
+padding: 10px;
+text-align: center;
+font-size: 60px;
+font-weight: bolder;
+
+}
+
+.Register{
+  border-style: solid;
+  height: 100px;
+  width: 300px;
+  float: right;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+  font-size: 60px;
+  font-weight: bolder;
+}
+
+.pagewrap{
+  width: 800px;
+  margin: auto;
+  border-style: dotted;
+  height: 500px;
+  padding-top: 300px;
+}
+
+.clearfix{
+  display: block;
+  content: " ";
+  clear: both;
+}
