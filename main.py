@@ -62,7 +62,7 @@ class MainHandler(webapp2.RequestHandler):
         student_query = Student.query()
         student_query = student_query.filter(Student.email == user.email())
         student_data = student_query.fetch()
-        self.response.write(student_data[0].age)
+        """self.response.write(student_data[0].age)
         template = jinja_environment.get_template('templates/output_order.html')
         pizza_order = {
           'name': student_data[0].name,
@@ -71,7 +71,7 @@ class MainHandler(webapp2.RequestHandler):
           'cheese_answer': student_data[0].school,
           'topings_answer': student_data[0].professor,
           'topings_answer': student_data[0].description}
-        self.response.write(template.render(pizza_order))
+        self.response.write(template.render(pizza_order))"""
 
 app = webapp2.WSGIApplication([
   ('/', MainHandler),
