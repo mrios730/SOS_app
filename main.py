@@ -16,7 +16,7 @@ jinja_environment = jinja2.Environment(loader=
 class Student(ndb.Model):
 
     name = ndb.StringProperty(required=True)
-    age = ndb.IntegerProperty(required=True)
+    year = ndb.IntegerProperty(required=True)
     email = ndb.StringProperty(required=True)
     school = ndb.StringProperty(required=True)
     professor = ndb.StringProperty(required=True)
@@ -24,7 +24,7 @@ class Student(ndb.Model):
 
 class Tutor(ndb.Model):
     name = ndb.StringProperty(required=True)
-    age = ndb.IntegerProperty(required=True)
+    year = ndb.IntegerProperty(required=True)
     email = ndb.StringProperty(required=True)
     subject = ndb.StringProperty(repeated=True)
     school = ndb.StringProperty(required=True)
@@ -57,7 +57,7 @@ class MainHandler(webapp2.RequestHandler):
                     (user.nickname(), users.create_logout_url('/')))
         user = users.get_current_user()
         self.response.out.write('%s' % greeting)
-        student1 = Student(name=self.request.get('name'), age=int(self.request.get('age')), email=user.email(), school=self.request.get('school'), professor=self.request.get('professor'), description=self.request.get('description'))
+        student1 = Student(name=self.request.get('name'), age=int(self.request.get('year')), email=user.email(), school=self.request.get('school'), professor=self.request.get('professor'), description=self.request.get('description'))
         student1.put()
         student_query = Student.query()
         student_query = student_query.filter(Student.email == user.email())
@@ -66,11 +66,11 @@ class MainHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/output_order.html')
         pizza_order = {
           'name': student_data[0].name,
-          'age': student_data[0].age,
-          'sauce_answer': student_data[0].email,
-          'cheese_answer': student_data[0].school,
-          'topings_answer': student_data[0].professor,
-          'topings_answer': student_data[0].description}
+          'year': student_data[0].year,
+          'email': student_data[0].email,
+          'school': student_data[0].school,
+          'professor': student_data[0].professor,
+          'description': student_data[0].description}
         self.response.write(template.render(pizza_order))"""
 
 app = webapp2.WSGIApplication([
