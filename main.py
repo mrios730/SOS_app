@@ -10,9 +10,6 @@ jinja_environment = jinja2.Environment(loader=
 
 
 
-
-
-
 class Student(ndb.Model):
 
     name = ndb.StringProperty(required=True)
@@ -36,13 +33,33 @@ class MainHandler(webapp2.RequestHandler):
             student_query = Student.query()
             student_query = student_query.filter(Student.email == user.email())
             student_data = student_query.fetch()
+            # if student_data:
+            #     self.response.write(student_data[0].year)
+            # else:
+                # greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
+                #             (user.nickname(), users.create_logout_url('/')))
+                # self.response.out.write('%s' % greeting)
+            template = jinja_environment.get_template('templates/MainPage.html')
+            self.response.write(template.render())
+        
+        # else:
+        #     self.response.write('<a href="%s">Sign in or register</a>.' %
+        #                 users.create_login_url('/'))
+
+class RegisterHandler(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        if user:
+            student_query = Student.query()
+            student_query = student_query.filter(Student.email == user.email())
+            student_data = student_query.fetch()
             if student_data:
                 self.response.write(student_data[0].year)
             else:
                 greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
                             (user.nickname(), users.create_logout_url('/')))
                 self.response.out.write('%s' % greeting)
-                template = jinja_environment.get_template('templates/input_order.html')
+                template = jinja_environment.get_template('templates/register.html')
                 self.response.write(template.render())
         else:
             self.response.write('<a href="%s">Sign in or register</a>.' %
@@ -73,4 +90,5 @@ class MainHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
   ('/', MainHandler),
+  ('/register',RegisterHandler),
 ], debug=True)
