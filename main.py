@@ -19,7 +19,6 @@ class Student(ndb.Model):
     age = ndb.IntegerProperty(required=True)
     email = ndb.StringProperty(required=True)
     school = ndb.StringProperty(required=True)
-    professor = ndb.StringProperty(required=True)
     description = ndb.StringProperty(required=True)
 
 class Tutor(ndb.Model):
@@ -28,7 +27,6 @@ class Tutor(ndb.Model):
     email = ndb.StringProperty(required=True)
     subject = ndb.StringProperty(repeated=True)
     school = ndb.StringProperty(required=True)
-    professor = ndb.StringProperty(required=True)
     description = ndb.StringProperty(required=True)
 
 class MainHandler(webapp2.RequestHandler):

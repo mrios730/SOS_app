@@ -7,18 +7,41 @@
 </head>
 <body>
 <section class= "clearfix">
+<div class= "pagewrap">
 
-<div class="pagewrap">
+    <div class= "body">
+<form method= "post">
 
-  <div class= "largerbody">
-    <div class="header">
-      header
+    <p>Enter Full Name: <input type="text" name="name"/>
+    </p>
+
+    <p>Year: <select name="years">
+          <option value="Freshmen"> Freshman</option>
+          <option value="Sophomore"> Sophomore </option>
+          <option value="Junior"> Junior</option>
+          <option value="Senior"> Senior </option>
+            </select>
+    </p>
+
+    <p>University: <select name="university">
+          <option value="Johns Hopkins"> Johns Hopkins </option>
+          <option value="Notre Dame"> Notre Dame </option>
+          <option value="Fordham University"> Fordham Univeristy</option>
+                  </select>
+    </p>
+
+    <p>Subject: <select name="subjects">
+          <option value="Computer Science"> Computer Science </option>
+          <option value="Biology"> Biology </option>
+                </select>
+    </p>
+
+    <p> Description:<input type="text" name="description"> <br>
+
+
+    <button type="submit" onclick="alert('You have registered for S.O.S. Welcome!')">Submit</button>
+</form>
     </div>
-    <div class="info">
-      info
-    </div>
-
-  </div>
 
 </div>
 
