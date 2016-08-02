@@ -42,7 +42,7 @@ class MainHandler(webapp2.RequestHandler):
                 greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
                             (user.nickname(), users.create_logout_url('/')))
                 self.response.out.write('%s' % greeting)
-                template = jinja_environment.get_template('templates/input_order.html')
+                template = jinja_environment.get_template('templates/register.html')
                 self.response.write(template.render())
         else:
             self.response.write('<a href="%s">Sign in or register</a>.' %
