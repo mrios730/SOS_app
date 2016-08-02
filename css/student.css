@@ -1,5 +1,5 @@
 body {
-  background-color: #3377ff;
+  background-color: #EFEFEF;
   /*background-color: #66b3ff;*/
 }
 
@@ -26,11 +26,12 @@ p {
 }
 
 .largestbox {
-  border-style: double;
+  border: 2px solid;
+  border-radius: 5px;
   height:900px;
   width: 600px;
   margin: auto;
-  background-color: #ccddff;
+  background-color: #CAEBF2;
   padding: 50px;
   padding-top: 100px;
 
