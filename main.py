@@ -41,7 +41,7 @@ class MainHandler(webapp2.RequestHandler):
                 # self.response.out.write('%s' % greeting)
             template = jinja_environment.get_template('templates/MainPage.html')
             self.response.write(template.render())
-        
+
         # else:
         #     self.response.write('<a href="%s">Sign in or register</a>.' %
         #                 users.create_login_url('/'))
@@ -90,5 +90,5 @@ class RegisterHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
   ('/', MainHandler),
-  ('/register',RegisterHandler),
+  ('/register.html',RegisterHandler),
 ], debug=True)
