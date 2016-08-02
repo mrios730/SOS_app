@@ -23,7 +23,7 @@ class Student(ndb.Model):
 
 class Tutor(ndb.Model):
     name = ndb.StringProperty(required=True)
-    year = ndb.IntegerProperty(required=True)
+    year = ndb.StringProperty(required=True)
     email = ndb.StringProperty(required=True)
     subject = ndb.StringProperty(repeated=True)
     school = ndb.StringProperty(required=True)
