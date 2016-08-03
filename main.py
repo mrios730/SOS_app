@@ -10,13 +10,12 @@ jinja_environment = jinja2.Environment(loader=
 
 
 
-class Student(ndb.Model):
-
+class Human(ndb.Model):
+    tors = ndb.StringProperty(required=True)
     name = ndb.StringProperty(required=True)
     year = ndb.StringProperty(required=True)
-    email = ndb.StringProperty(required=True)
     school = ndb.StringProperty(required=True)
-    description = ndb.StringProperty(required=True)
+    major = ndb.StringProperty(required=True)
 
 # class Tutor(ndb.Model):
 #     name = ndb.StringProperty(required=True)
@@ -30,9 +29,9 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
-            student_query = Student.query()
-            student_query = student_query.filter(Student.email == user.email())
-            student_data = student_query.fetch()
+            human_query = Human.query()
+            # human_query = human_query.filter(Human.email == user.email())
+            human_data = human_query.fetch()
             # if student_data:
             #     self.response.write(student_data[0].year)
             # else:
@@ -52,20 +51,20 @@ class MainHandler(webapp2.RequestHandler):
                     (user.nickname(), users.create_logout_url('/')))
         user = users.get_current_user()
         self.response.out.write('%s' % greeting)
-        student1 = Student(name=self.request.get('name'), year=self.request.get('year'), email=user.email(), school=self.request.get('school'), description=self.request.get('description'))
-        student1.put()
-        student_query = Student.query()
-        student_query = student_query.filter(Student.email == user.email())
-        student_data = student_query.fetch()
+        human1 = Human(tors=self.request.get('tors'),name=self.request.get('name'), year=self.request.get('year'), school=self.request.get('school'), major=self.request.get('major'))
+        human1.put()
+        human_query = Human.query()
+        # human_query = human_query.filter(Human.email == user.email())
+        human_data = human_query.fetch()
 
 class RegisterHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
-            student_query = Student.query()
-            student_query = student_query.filter(Student.email == user.email())
-            student_data = student_query.fetch()
-            if student_data:
+            human_query = Human.query()
+            # human_query = human_query.filter(Human.email == user.email())
+            human_data = human_query.fetch()
+            if human_data:
             #     self.response.write(student_data[0].year)
             # else:
                 greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
@@ -84,11 +83,17 @@ class RegisterHandler(webapp2.RequestHandler):
                     (user.nickname(), users.create_logout_url('/')))
         user = users.get_current_user()
         self.response.out.write('%s' % greeting)
-        student1 = Student(name=self.request.get('name'), year=self.request.get('year'), email=user.email(), school=self.request.get('school'), description=self.request.get('description'))
-        student1.put()
-        student_query = Student.query()
-        student_query = student_query.filter(Student.email == user.email())
-        student_data = student_query.fetch()
+        # tors_value = self.request.get('tors')
+        # name_value = self.request.get('name')
+        # year_value = self.request.get('year')
+        # school_value = self.request.get('school')
+        # major_value = self.request.get('major')
+        #
+        human1 = Human(tors=self.request.get('tors'),name=self.request.get('name'), year=self.request.get('year'), school=self.request.get('school'), major=self.request.get('major'))
+        human1.put()
+        human_query = Human.query()
+        # human_query = human_query.filter(Human.email == user.email())
+        human_data = human_query.fetch()
         """self.response.write(student_data[0].age)
         template = jinja_environment.get_template('templates/output_order.html')
         pizza_order = {
