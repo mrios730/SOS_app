@@ -17,13 +17,6 @@ class Human(ndb.Model):
     school = ndb.StringProperty(required=True)
     major = ndb.StringProperty(required=True)
 
-# class Tutor(ndb.Model):
-#     name = ndb.StringProperty(required=True)
-#     year = ndb.StringProperty(required=True)
-#     email = ndb.StringProperty(required=True)
-#     subject = ndb.StringProperty(repeated=True)
-#     school = ndb.StringProperty(required=True)
-#     description = ndb.StringProperty(required=True)
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -49,7 +42,7 @@ class MainHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
                     (user.nickname(), users.create_logout_url('/')))
-        user = users.get_current_user()
+        # user = users.get_current_user()
         self.response.out.write('%s' % greeting)
         human1 = Human(tors=self.request.get('tors'),name=self.request.get('name'), year=self.request.get('year'), school=self.request.get('school'), major=self.request.get('major'))
         human1.put()
@@ -83,7 +76,7 @@ class RegisterHandler(webapp2.RequestHandler):
                     (user.nickname(), users.create_logout_url('/')))
         user = users.get_current_user()
         self.response.out.write('%s' % greeting)
-        # tors_value = self.request.get('tors')
+        tors_value = self.request.get('tors')
         # name_value = self.request.get('name')
         # year_value = self.request.get('year')
         # school_value = self.request.get('school')
@@ -91,9 +84,13 @@ class RegisterHandler(webapp2.RequestHandler):
         #
         human1 = Human(tors=self.request.get('tors'),name=self.request.get('name'), year=self.request.get('year'), school=self.request.get('school'), major=self.request.get('major'))
         human1.put()
+        # if tors_value == "Student":
+        #     template = jinja_environment.get_template('templates/studentprofile.html')
+        #     self.response.write(template.render())
         human_query = Human.query()
         # human_query = human_query.filter(Human.email == user.email())
         human_data = human_query.fetch()
+
         """self.response.write(student_data[0].age)
         template = jinja_environment.get_template('templates/output_order.html')
         pizza_order = {
