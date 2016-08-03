@@ -1,27 +1,38 @@
-<!DOCTYPE html>
 <html>
 <head>
   <title>
-    Student Profile Page
   </title>
-  <link rel="stylesheet" type="text/css" href="../css/student.css">
+<link rel="stylesheet" type"text/css" href="../css/studentprofile.css">
 </head>
+
 <body>
-  <div class= "outside">
-    <div class= "largestbox">
-      <img src="student.jpg" alt="my-image" class="circular-image" height="150" width="150">
-      <h2> First Last </h2>
-      <div class= "mediumbox">
-        <p> Age: </p>
-        <p> College: </p>
-        <p> Major: </p>
-        <p> Year: </p>
-        <p> Classes: </p>
-      </div>
-      <div class="smallbox">
-        <p> Mini Bio </p>
-      </div>
+<section class="clearfix">
+<div class="sheader">
+  <a href="studenthome.html">
+  <img class="logo" src="../logo.png">
+  </a>
+</div>
+<div class="pagewrap">
+
+  <div class="top">
+    <div class="profile">
+    </div>
+
+    <div class="info">
+      <p>University: {{ University_answer }} </p>
+      <p>Major: {{ Major_answer }} </p>
+      <p>GradeLevel: {{ Year_answer }} </p>
+    </div>
+
+    <div class="name">
+    <p> {{Name_answer}} </p>
     </div>
   </div>
+
+  <div class="bottom">
+  </div>
+
+</div>
+
 </body>
 </html>

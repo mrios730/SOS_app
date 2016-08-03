@@ -18,13 +18,13 @@ class Student(ndb.Model):
     school = ndb.StringProperty(required=True)
     description = ndb.StringProperty(required=True)
 
-class Tutor(ndb.Model):
-    name = ndb.StringProperty(required=True)
-    year = ndb.StringProperty(required=True)
-    email = ndb.StringProperty(required=True)
-    subject = ndb.StringProperty(repeated=True)
-    school = ndb.StringProperty(required=True)
-    description = ndb.StringProperty(required=True)
+# class Tutor(ndb.Model):
+#     name = ndb.StringProperty(required=True)
+#     year = ndb.StringProperty(required=True)
+#     email = ndb.StringProperty(required=True)
+#     subject = ndb.StringProperty(repeated=True)
+#     school = ndb.StringProperty(required=True)
+#     description = ndb.StringProperty(required=True)
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -36,6 +36,7 @@ class MainHandler(webapp2.RequestHandler):
             student_query = Student.query()
             student_query = student_query.filter(Student.email == user.email())
             student_data = student_query.fetch()
+            
             if student_data:
                 greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
                             (user.nickname(), users.create_logout_url('/')))
@@ -49,6 +50,18 @@ class MainHandler(webapp2.RequestHandler):
             self.response.write('<a href="%s">Sign in with Gmail</a>.' %
                         users.create_login_url('/'))
 
+    def post(self):
+        user = users.get_current_user()
+        greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
+                    (user.nickname(), users.create_logout_url('/')))
+        user = users.get_current_user()
+        self.response.out.write('%s' % greeting)
+        student1 = Student(name=self.request.get('name'), year=self.request.get('year'), email=user.email(), school=self.request.get('school'), description=self.request.get('description'))
+        student1.put()
+        student_query = Student.query()
+        student_query = student_query.filter(Student.email == user.email())
+        student_data = student_query.fetch()
+
 class RegisterHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -57,8 +70,8 @@ class RegisterHandler(webapp2.RequestHandler):
             student_query = student_query.filter(Student.email == user.email())
             student_data = student_query.fetch()
             if student_data:
-                self.response.write(student_data[0].year)
-            else:
+            #     self.response.write(student_data[0].year)
+            # else:
                 greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
                             (user.nickname(), users.create_logout_url('/')))
                 self.response.out.write('%s' % greeting)

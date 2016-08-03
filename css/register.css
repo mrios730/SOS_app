@@ -1,21 +1,54 @@
-body{
-  background-color: #7A9790;
+body {
+  background-image:linear-gradient(to right, #A0E7AF, #A0E7AF 50%, #7ACAF6 50%, #7ACAF6);
 }
+
 .clearfix {
   display: block;
   content: " ";
   clear: both;
 }
-.pagewrap {
-  border-style: dotted;
-  width: 600px;
-  height: 900px;
-  margin: auto;
+.logo{
+  width: 300px;
+  margin-left: 160px;
+  margin-top: 20px;
+  border-style: double;
 }
 
-.body {
-  height: 400px;
-  width: 580px;
-  margin: 10px;
-  border-style: solid;
+.pagewrap {
+  height: 600px;
+  width: 600px;
+  margin: 70px auto;
+  /*border-style: dashed;*/
+  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, .5);
+}
+
+.profilepic {
+  height: 150px;
+  width: auto;
+  border-style: none;
+}
+
+.forms {
+  border-style: none;
+  height: 500px;
+  width: auto;
+  padding-left: 150px;
+  padding-top: 20px;
+}
+
+.answers {
+  height: 50px;
+  width: 300px;
+  text-align: center;
+  font-size: 15px;
+}
+.button {
+  height: 35px;
+  width: 130px;
+
+
+}
+.button2{
+  padding-left: 75px;
 }
