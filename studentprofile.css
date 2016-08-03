@@ -1,0 +1,61 @@
+.clearfix {
+  display: block;
+  content: " ";
+  clear: both;
+}
+.sheader{
+  width: auto;
+  height: 50px;
+  background-color: #7ACAF6;
+}
+.theader{
+  width: auto;
+  height: 50px;
+  background-color: #A0E7AF;
+}
+.pagewrap {
+  height: 700px;
+  width: 600px;
+  margin: auto;
+  border-style: dashed;
+}
+.profile {
+  height: 160px;
+  width: 150px;
+  border-style: solid;
+  float: left;
+  margin-left: 10px;
+  margin-top: 10px;
+
+}
+.info{
+  height: 200px;
+  width: 400px;
+  border-style: solid;
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px;
+  padding-left:5px;
+}
+
+.name{
+  float: left;
+  margin-left: 20px;
+}
+.top{
+  height: 230px;
+  width: auto;
+  border-style: dotted;
+}
+.bottom {
+  height:400px;
+  width: auto;
+  border-style: dotted;
+  position: relative;
+  visibility: visible;
+}
+.logo {
+  width: 100px;
+  margin-left: 10px;
+  margin-top: 5px;
+}
