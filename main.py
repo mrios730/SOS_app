@@ -30,21 +30,24 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
+            greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
+                        (user.nickname(), users.create_logout_url('/')))
+            self.response.out.write('%s' % greeting)
             student_query = Student.query()
             student_query = student_query.filter(Student.email == user.email())
             student_data = student_query.fetch()
-            # if student_data:
-            #     self.response.write(student_data[0].year)
-            # else:
-                # greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
-                #             (user.nickname(), users.create_logout_url('/')))
-                # self.response.out.write('%s' % greeting)
-            template = jinja_environment.get_template('templates/MainPage.html')
-            self.response.write(template.render())
-        
-        # else:
-        #     self.response.write('<a href="%s">Sign in or register</a>.' %
-        #                 users.create_login_url('/'))
+            if student_data:
+                greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
+                            (user.nickname(), users.create_logout_url('/')))
+                self.response.out.write('%s' % greeting)
+                #self.response.write(student_data[0].year)
+            else:
+                template = jinja_environment.get_template('templates/register.html')
+                self.response.write(template.render())
+
+        else:
+            self.response.write('<a href="%s">Sign in with Gmail</a>.' %
+                        users.create_login_url('/'))
 
 class RegisterHandler(webapp2.RequestHandler):
     def get(self):
@@ -62,7 +65,7 @@ class RegisterHandler(webapp2.RequestHandler):
                 template = jinja_environment.get_template('templates/register.html')
                 self.response.write(template.render())
         else:
-            self.response.write('<a href="%s">Sign in or register</a>.' %
+            self.response.write('<a href="%s">Sign in</a>.' %
                         users.create_login_url('/'))
 
 
@@ -90,5 +93,5 @@ class RegisterHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
   ('/', MainHandler),
-  ('/register',RegisterHandler),
+  ('/register.html',RegisterHandler),
 ], debug=True)
