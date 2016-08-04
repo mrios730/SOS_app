@@ -1,3 +1,6 @@
+body {
+  background-color: #eeedef;
+}
 .clearfix {
   display: block;
   content: " ";
@@ -17,36 +20,39 @@
   height: 700px;
   width: 600px;
   margin: auto;
-  border-style: dashed;
+  border-style: none;
+  background-color: white;
+  color: blue;
 }
 .profile {
-  height: 160px;
-  width: 150px;
-  border-style: solid;
-  float: left;
-  margin-left: 10px;
+  height: 270px;
+  width: auto;
+  border-style: none;
+  float: left;;
+  margin-left: 110px;
   margin-top: 10px;
 
 }
 
 .name{
-  float: left;
-  margin-left: 20px;
+  float:;
+  font-size: 30px;
+  text-align: center;
 }
 
 .bottom {
   height:400px;
   width: auto;
-  border-style: dotted;
+  border-style: none;
   position: relative;
   visibility: visible;
 }
 
 .pic{
-  height: 220px;
-  width: 180px;
-  border-style: dotted;
-  margin-left: 200px;
+  height: 260px;
+  width: 600px;
+  border-style: none;
+  margin-left: 10px;
 
 }
 .logo {

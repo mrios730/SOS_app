@@ -1,3 +1,7 @@
+body {
+  background-color: #eeedef;
+}
+
 .clearfix {
   display: block;
   content: " ";
@@ -17,35 +21,43 @@
   height: 700px;
   width: 600px;
   margin: auto;
-  border-style: dashed;
+  border-style: none;
+  background-color: white;
 }
 .profile {
-  height: 160px;
+  height: 150px;
   width: 150px;
-  border-style: solid;
+  border-style: none;
   float: left;
   margin-left: 10px;
   margin-top: 10px;
+  margin-bottom: 15px;
 
 }
 .info{
   height: 200px;
   width: 400px;
-  border-style: solid;
+  border-style: none;
   float: right;
   margin-top: 10px;
   margin-right: 10px;
   padding-left:5px;
+  padding-top: 15px;
+}
+span {
+  font-weight: bold;
 }
 
 .name{
-  float: left;
-  margin-left: 20px;
+  font-size: 20px;
+  /*float: left;*/
+  /*margin-left: 20px;*/
+  text-align:center;
 }
 .top{
   height: 230px;
   width: auto;
-  border-style: dotted;
+  border-style: none;
 }
 .bottom {
   height:400px;

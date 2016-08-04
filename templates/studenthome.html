@@ -5,33 +5,32 @@
 <link rel="stylesheet" type"text/css" href="../css/studenthome.css">
 </head>
 
-<body>
+<body class="body">
 <section class="clearfix">
 <div class="sheader">
-  <img class="logo" src="../logo.png">
+  <img class="logo" src="../static_files/logo.png">
 </div>
 <div class="pagewrap">
 
 
     <div class="pic">
       <div class="profile">
-        profile
-      </div>
-
-      <div class="name">
-        <p> {{Name_answer}} </p>
+        <a href="profile">
+          <img src="../static_files/android.png">
+        </a>
       </div>
    </div>
-
+   <div class="name">
+     <p> {{name}} </p>
+   </div>
 
   <div class="bottom">
     <section class="search">
-    <form>
-        <input class="searchtext" type="text" placeholder="Search By Major" required>
-        <input class= "searchbar" type="button" value="Search">
+    <form method="post" action="results">
+        <input class="searchtext" type="text" placeholder="Search By Major" name="searchbox" required>
+        <button class= "searchbar" type="submit">Search</button>
     </form>
   </section>
-
 
   </div>
 

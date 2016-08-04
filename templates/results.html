@@ -5,5 +5,10 @@
   </title>
 </head>
 <body>
+  {% for result in results %}
+<div class="row">
+  <a href={{result.link}}>{{result.id}}</a>
+</div>
+{% endfor %}
 </body>
 </html>

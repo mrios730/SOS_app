@@ -3,11 +3,10 @@ import os
 import webapp2
 from google.appengine.api import users
 from google.appengine.ext import ndb
-
+import time
 
 jinja_environment = jinja2.Environment(loader=
     jinja2.FileSystemLoader(os.path.dirname(__file__)))
-
 
 
 class Human(ndb.Model):
@@ -16,93 +15,120 @@ class Human(ndb.Model):
     year = ndb.StringProperty(required=True)
     school = ndb.StringProperty(required=True)
     major = ndb.StringProperty(required=True)
-
+    email = ndb.StringProperty(required=True)
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
             human_query = Human.query()
-            # human_query = human_query.filter(Human.email == user.email())
+            human_query = human_query.filter(Human.email == user.email())
             human_data = human_query.fetch()
-            # if student_data:
-            #     self.response.write(student_data[0].year)
-            # else:
-                # greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
-                #             (user.nickname(), users.create_logout_url('/')))
-                # self.response.out.write('%s' % greeting)
-            template = jinja_environment.get_template('templates/register.html')
-            self.response.write(template.render())
-
+            if human_data:
+                self.redirect('/homepage')
+            else:
+                greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
+                    (user.nickname(), users.create_logout_url('/')))
+                self.response.out.write('%s' % greeting)
+                template = jinja_environment.get_template('templates/register.html')
+                self.response.write(template.render())
         else:
             self.response.write('<a href="%s">Sign in or register</a>.' %
             users.create_login_url('/'))
 
     def post(self):
         user = users.get_current_user()
-        greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
-                    (user.nickname(), users.create_logout_url('/')))
-        # user = users.get_current_user()
-        self.response.out.write('%s' % greeting)
-        human1 = Human(tors=self.request.get('tors'),name=self.request.get('name'), year=self.request.get('year'), school=self.request.get('school'), major=self.request.get('major'))
+        human1 = Human(tors=self.request.get('tors'),name=self.request.get('name'), year=self.request.get('year'), school=self.request.get('school'), major=self.request.get('major'), email=user.email())
         human1.put()
         human_query = Human.query()
-        # human_query = human_query.filter(Human.email == user.email())
+        human_query = human_query.filter(Human.email == user.email())
         human_data = human_query.fetch()
+        self.redirect('/homepage')
 
-class RegisterHandler(webapp2.RequestHandler):
+
+
+
+class HomePageHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
-        if user:
-            human_query = Human.query()
-            # human_query = human_query.filter(Human.email == user.email())
-            human_data = human_query.fetch()
-            if human_data:
-            #     self.response.write(student_data[0].year)
-            # else:
-                greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
-                            (user.nickname(), users.create_logout_url('/')))
-                self.response.out.write('%s' % greeting)
-                template = jinja_environment.get_template('templates/register.html')
-                self.response.write(template.render())
-        else:
-            self.response.write('<a href="%s">Sign in or register</a>.' %
-                        users.create_login_url('/'))
+        time.sleep(1)
+        human_query = Human.query()
+        human_query = human_query.filter(Human.email == user.email())
+        human_data = human_query.fetch()
+        if human_data[0].tors == "Tutor":
+            info = {
+          'university': human_data[0].school,
+          'major' : human_data[0].major,
+          'year' : human_data[0].year,
+          'name' : human_data[0].name,
+          }
+            template = jinja_environment.get_template('templates/tutorhome.html')
+            self.response.write(template.render(info))
+            greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
+                        (user.nickname(), users.create_logout_url('/')))
+            self.response.out.write('%s' % greeting)
+        elif human_data[0].tors == "Student":
+            info = {
+          'name': human_data[0].name,
+          }
+            template = jinja_environment.get_template('templates/studenthome.html')
+            self.response.write(template.render(info))
+            greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
+                        (user.nickname(), users.create_logout_url('/')))
+            self.response.out.write('%s' % greeting)
 
-
-    def post(self):
+class ProfileHandler(webapp2.RequestHandler):
+    def get(self):
         user = users.get_current_user()
+        time.sleep(1)
+        human_query = Human.query()
+        human_query = human_query.filter(Human.email == user.email())
+        human_data = human_query.fetch()
+        info = {
+            'school': human_data[0].school,
+            'major' : human_data[0].major,
+            'year' : human_data[0].year,
+            'name' : human_data[0].name,
+        }
+        template = jinja_environment.get_template('templates/studentprofile.html')
+        self.response.write(template.render(info))
         greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
                     (user.nickname(), users.create_logout_url('/')))
-        user = users.get_current_user()
         self.response.out.write('%s' % greeting)
-        tors_value = self.request.get('tors')
-        # name_value = self.request.get('name')
-        # year_value = self.request.get('year')
-        # school_value = self.request.get('school')
-        # major_value = self.request.get('major')
-        #
-        human1 = Human(tors=self.request.get('tors'),name=self.request.get('name'), year=self.request.get('year'), school=self.request.get('school'), major=self.request.get('major'))
-        human1.put()
-        # if tors_value == "Student":
-        #     template = jinja_environment.get_template('templates/studentprofile.html')
-        #     self.response.write(template.render())
-        human_query = Human.query()
-        # human_query = human_query.filter(Human.email == user.email())
-        human_data = human_query.fetch()
 
-        """self.response.write(student_data[0].age)
-        template = jinja_environment.get_template('templates/output_order.html')
-        pizza_order = {
-          'name': student_data[0].name,
-          'year': student_data[0].year,
-          'email': student_data[0].email,
-          'school': student_data[0].school,
-          'professor': student_data[0].professor,
-          'description': student_data[0].description}
-        self.response.write(template.render(pizza_order))"""
+class ResultsHandler(webapp2.RequestHandler):
+    def post(self):
+        search=self.request.get('searchbox')
+        human_query = Human.query()
+        human_query = human_query.filter(Human.major == search)
+        human_data = human_query.fetch()
+        names_of_results = ""
+        keys_of_results = []
+        y=0
+        for x in human_data:
+            keys_of_results.append({"id":str(x.key.id()), "link":"/profileviewer?id="+str(x.key.id())})
+            y=y+1
+        for x in human_data:
+            names_of_results=names_of_results+"<div>"+x.name+"</div>"
+        template_values = {
+        'results':keys_of_results,
+        }
+        template = jinja_environment.get_template('templates/results.html')
+        self.response.write(template.render(template_values))
+
+class ProfileViewerHandler(webapp2.RequestHandler):
+    def get(self):
+        user_id=self.request.get('id')
+        tutor = {
+        'tutor': Human.get_by_id(int(user_id))
+        }
+        template = jinja_environment.get_template('templates/tutorhomeview.html')
+        self.response.write(template.render(tutor))
 
 app = webapp2.WSGIApplication([
   ('/', MainHandler),
-  ('/register.html',RegisterHandler),
+  ('/homepage', HomePageHandler),
+  ('/profile',ProfileHandler),
+  ('/results', ResultsHandler),
+  ('/profileviewer', ProfileViewerHandler),
 ], debug=True)
