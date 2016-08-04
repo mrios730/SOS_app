@@ -33,8 +33,12 @@ class MainHandler(webapp2.RequestHandler):
                 template = jinja_environment.get_template('templates/register.html')
                 self.response.write(template.render())
         else:
-            self.response.write('<a href="%s">Sign in or register</a>.' %
-            users.create_login_url('/'))
+            dictionary = {
+            "sign_in_url": '<a href="%s"><img src="../static_files/logo.png" alt="Sign in" style="width: auto; height:250px; border:0; margin-left:350px; margin-top:150px;"></a>' %
+            users.create_login_url('/')
+            }
+            template = jinja_environment.get_template('templates/signinpage.html')
+            self.response.write(template.render(dictionary))
 
     def post(self):
         user = users.get_current_user()
