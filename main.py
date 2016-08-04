@@ -98,9 +98,16 @@ class ProfileHandler(webapp2.RequestHandler):
 
 class ResultsHandler(webapp2.RequestHandler):
     def post(self):
+        user = users.get_current_user()
         search=self.request.get('searchbox')
+        human_query1 = Human.query()
+        human_query1 = human_query1.filter(Human.email == user.email())
+        human_data1 = human_query1.fetch()
+        school_of_user = human_data1[0].school
         human_query = Human.query()
         human_query = human_query.filter(Human.major == search)
+        human_query = human_query.filter(Human.school == school_of_user)
+        human_query = human_query.filter(Human.tors == "Tutor")
         human_data = human_query.fetch()
         names_of_results = ""
         keys_of_results = []
