@@ -2,6 +2,8 @@ import jinja2
 import os
 import webapp2
 from google.appengine.api import users
+from google.appengine.api import app_identity
+from google.appengine.api import mail
 from google.appengine.ext import ndb
 import time
 
@@ -16,6 +18,8 @@ class Human(ndb.Model):
     school = ndb.StringProperty(required=True)
     major = ndb.StringProperty(required=True)
     email = ndb.StringProperty(required=True)
+    subject = ndb.StringProperty(repeated=True)
+    description = ndb.StringProperty(required=True)
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -42,7 +46,7 @@ class MainHandler(webapp2.RequestHandler):
 
     def post(self):
         user = users.get_current_user()
-        human1 = Human(tors=self.request.get('tors'),name=self.request.get('name'), year=self.request.get('year'), school=self.request.get('school'), major=self.request.get('major'), email=user.email())
+        human1 = Human(tors=self.request.get('tors'),name=self.request.get('name'), year=self.request.get('year'), school=self.request.get('school'), major=self.request.get('major'), email=user.email(), subject=self.request.get_all('subject'), description=self.request.get('description'))
         human1.put()
         human_query = Human.query()
         human_query = human_query.filter(Human.email == user.email())
@@ -101,15 +105,15 @@ class ProfileHandler(webapp2.RequestHandler):
         self.response.out.write('%s' % greeting)
 
 class ResultsHandler(webapp2.RequestHandler):
-    def post(self):
+    def get(self):
+        search = self.request.get('searchbox')
         user = users.get_current_user()
-        search=self.request.get('searchbox')
         human_query1 = Human.query()
         human_query1 = human_query1.filter(Human.email == user.email())
         human_data1 = human_query1.fetch()
         school_of_user = human_data1[0].school
         human_query = Human.query()
-        human_query = human_query.filter(Human.major == search)
+        human_query =  Human.query(Human.subject == search)
         human_query = human_query.filter(Human.school == school_of_user)
         human_query = human_query.filter(Human.tors == "Tutor")
         human_data = human_query.fetch()
@@ -117,7 +121,7 @@ class ResultsHandler(webapp2.RequestHandler):
         keys_of_results = []
         y=0
         for x in human_data:
-            keys_of_results.append({"id":str(x.key.id()), "link":"/profileviewer?id="+str(x.key.id())})
+            keys_of_results.append({"name":Human.get_by_id(int(x.key.id())).name, "link":"/profileviewer?id="+str(x.key.id())})
             y=y+1
         for x in human_data:
             names_of_results=names_of_results+"<div>"+x.name+"</div>"
@@ -127,14 +131,32 @@ class ResultsHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/results.html')
         self.response.write(template.render(template_values))
 
+
 class ProfileViewerHandler(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
         user_id=self.request.get('id')
         tutor = {
         'tutor': Human.get_by_id(int(user_id))
         }
         template = jinja_environment.get_template('templates/tutorhomeview.html')
         self.response.write(template.render(tutor))
+        greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
+                    (user.nickname(), users.create_logout_url('/')))
+        self.response.out.write('%s' % greeting)
+
+class SendMailHandler(webapp2.RequestHandler):
+    def post(self):
+        user = users.get_current_user()
+        send_approved_mail(user.email(), self.request.get('id'), self.request.get('email'))
+        self.response.content_type = 'text/plain'
+        self.redirect('/homepage')
+
+def send_approved_mail(sender_address ,emailr, content):
+    mail.send_mail(sender=sender_address,
+                   to=emailr,
+                   subject="Tutor Request",
+                   body=content)
 
 app = webapp2.WSGIApplication([
   ('/', MainHandler),
@@ -142,4 +164,5 @@ app = webapp2.WSGIApplication([
   ('/profile',ProfileHandler),
   ('/results', ResultsHandler),
   ('/profileviewer', ProfileViewerHandler),
+  ('/send_mail', SendMailHandler),
 ], debug=True)

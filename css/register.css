@@ -37,8 +37,13 @@ body {
   padding-top: 20px;
 }
 
+textarea {
+    resize: none;
+    height:150px;
+}
+
 .answers {
-  height: 50px;
+  height: 30px;
   width: 300px;
   text-align: center;
   font-size: 15px;

@@ -3,12 +3,93 @@
 <head>
   <title>
   </title>
+<style>
+    body{
+      background-color:#A0E7AF;
+    }
+    .clearfix {
+      display: block;
+      content: " ";
+      clear: both;
+    }
+    .row{
+      /*background-color: #A0E7AF;*/
+      border-style: solid;
+      margin-top:10px;
+      text-align: center;
+      width: auto;
+      border-radius: 10px;
+      height: 40px;
+      background-color: white;
+
+    }
+    .header {
+      border-style: none;
+      width: auto;
+      height: 70px;
+      background-color: white;
+      text-align: center;
+      padding-top: .5px;
+
+    }
+    .pagewrap{
+    height: auto;
+    width: 600px;
+    margin: auto;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    /*border-style: dashed;*/
+    background: rgb(255, 255, 255);
+    background: rgba(255, 255, 255, .5);
+   }
+   .container {
+     height: auto;
+     width: 600px;
+     margin: auto;
+     border-style: none;
+   }
+   .bottom {
+     height: auto;
+     width: auto;
+    border-style: none;
+    text-align: center;
+
+   }
+    /*.logo {
+    width: 100px;
+    margin-left:10px;
+    margin-top: 5px;
+    float: left;
+  }*/
+    h1 {
+    /*margin-right: 10px;*/
+    font-size: 35px;
+    }
+</style>
 </head>
+
 <body>
+<section class="clearfix">
+  <div class="header">
+
+    <!-- <img class="logo" src="../static_files/logo.png"/> -->
+    <h1> The following tutors are available:</h1>
+
+  </div>
+<div class="container">
+  <div class="pagewrap">
   {% for result in results %}
 <div class="row">
-  <a href={{result.link}}>{{result.id}}</a>
+  <a href={{result.link}}>{{result.name}}</a>
 </div>
 {% endfor %}
+  </div>
+  <div class="bottom">
+  <a href="homepage">
+  <img class="logo" src="../static_files/logo.png"/>
+  </a>
+  </div>
+</div>
+</section>
 </body>
 </html>
