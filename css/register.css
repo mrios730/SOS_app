@@ -15,7 +15,7 @@ body {
 }
 
 .pagewrap {
-  height: 600px;
+  height: 700px;
   width: 600px;
   margin: 70px auto;
   /*border-style: dashed;*/
@@ -56,4 +56,5 @@ textarea {
 }
 .button2{
   padding-left: 75px;
+  margin-top: 5px;
 }

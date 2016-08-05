@@ -7,9 +7,7 @@
 <section class="clearfix">
   <div class="theader">
     <img class="logo" src="../static_files/logo.png">
-    <a href="results">
-      <h3 class="return"> Return to results</h3>
-    </a>
+
   </div>
 <div class="pagewrap">
 
@@ -18,25 +16,30 @@
       <img class="profile" src="../static_files/android.png">
     </div>
 
-    <div class="info">
-      <p>University: {{ tutor.school }} </p>
-      <p>Major: {{ tutor.major }} </p>
-      <p>GradeLevel: {{ tutor.year }} </p>
+    <div class="tinfo">
+      <p class="padding"><span>University</span>: {{ tutor.school }} </p>
+      <p class="padding"><span>Major</span>: {{ tutor.major }} </p>
+      <p class="padding"><span>GradeLevel</span>: {{ tutor.year }} </p>
     </div>
 
     <div class="name">
-    <p> {{tutor.name}} </p>
+    <p> <span>{{tutor.name}}</span> </p>
     </div>
   </div>
 
   <div class="bottom">
+    <div class="tdescription">
     {{tutor.description}}
+    </div>
+
     <div class="emails">
+
     <form method="post" action="send_mail">
-        <p><textarea name="answers" placeholder="Send this tutor an email!" rows="4" cols="50" name="email"></textarea>
+        <p><textarea placeholder="Send this tutor an email!" rows="4" cols="50" name="email"></textarea>
             <button class="button" type="submit" onclick="alert('Email Sent!)">Send Email!</button></p>
         <input type="hidden" name="id" value="{{tutor.email}}">
     </form>
+
     </div>
   </div>
 

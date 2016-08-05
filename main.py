@@ -38,7 +38,7 @@ class MainHandler(webapp2.RequestHandler):
                 self.response.write(template.render())
         else:
             dictionary = {
-            "sign_in_url": '<a href="%s"><img src="../static_files/logo.png" alt="Sign in" style="width: auto; height:250px; border:0; margin-left:350px; margin-top:150px;"></a>' %
+            "sign_in_url": '<a href="%s"><img src="../static_files/biglogo.png" alt="Sign in" style="width: auto; height:250px; border:0; margin-left: 415px; margin-top:180px;"></a>' %
             users.create_login_url('/')
             }
             template = jinja_environment.get_template('templates/signinpage.html')
@@ -69,6 +69,7 @@ class HomePageHandler(webapp2.RequestHandler):
           'major' : human_data[0].major,
           'year' : human_data[0].year,
           'name' : human_data[0].name,
+          'description':human_data[0].description,
           }
             template = jinja_environment.get_template('templates/tutorhome.html')
             self.response.write(template.render(info))
@@ -97,7 +98,9 @@ class ProfileHandler(webapp2.RequestHandler):
             'major' : human_data[0].major,
             'year' : human_data[0].year,
             'name' : human_data[0].name,
+            'description': human_data[0].description,
         }
+        user_id=self.request.get('id')
         template = jinja_environment.get_template('templates/studentprofile.html')
         self.response.write(template.render(info))
         greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
@@ -158,6 +161,48 @@ def send_approved_mail(sender_address ,emailr, content):
                    subject="Tutor Request",
                    body=content)
 
+class EditHandler(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        human_query = Human.query()
+        human_query = human_query.filter(Human.email == user.email())
+        human_data = human_query.fetch()
+        template = jinja_environment.get_template('templates/edit.html')
+        info = {
+      'university': human_data[0].school,
+      'major' : human_data[0].major,
+      'year' : human_data[0].year,
+      'name' : human_data[0].name,
+      'description' : human_data[0].description
+      }
+        self.response.write(template.render(info))
+        greeting = ('Welcome, %s! (<a href="%s">sign out</a>)' %
+                    (user.nickname(), users.create_logout_url('/')))
+        self.response.out.write('%s' % greeting)
+    def post(self):
+        user = users.get_current_user()
+        human_query = Human.query()
+        human_query = human_query.filter(Human.email == user.email())
+        human_data = human_query.fetch()
+        human_data = human_data[0]
+        names=self.request.get('name')
+        universitys=self.request.get('school')
+        majors=self.request.get('major')
+        years=self.request.get('year')
+        descriptions=self.request.get('description')
+        if len(names)>0:
+            human_data.name=names
+        if len(universitys)>0:
+            human_data.school=universitys
+        if len(majors)>0:
+            human_data.major=majors
+        if len(years)>0:
+            human_data.year=years
+        if len(descriptions)>0:
+            human_data.description=descriptions
+        human_data.put()
+        self.redirect('/profile')
+
 app = webapp2.WSGIApplication([
   ('/', MainHandler),
   ('/homepage', HomePageHandler),
@@ -165,4 +210,5 @@ app = webapp2.WSGIApplication([
   ('/results', ResultsHandler),
   ('/profileviewer', ProfileViewerHandler),
   ('/send_mail', SendMailHandler),
+  ('/edit', EditHandler),
 ], debug=True)

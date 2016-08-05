@@ -32,21 +32,42 @@ textarea {
   height: 150px;
   width: 150px;
   border-style: none;
-  float: left;
-  margin-left: 10px;
-  margin-top: 10px;
+  /*float: left;*/
+  /*margin-left: 5px;
+  margin-top: 10px;*/
   margin-bottom: 15px;
+  margin: auto;
 
 }
-.info{
-  height: 200px;
+.sinfo{
+  height: 150px;
   width: 400px;
-  border-style: none;
+  border-style: solid;
+  margin:auto;
+  /*float: right;*/
+  /*margin-top: 10px;
+  margin-right: 10px;*/
+  border-width: 10px;
+  border-color: #7ACAF6;
+  border-radius: 10px;
+}
+.tinfo{
+  height: 150px;
+  width: 400px;
+  border-style: solid;
   float: right;
   margin-top: 10px;
   margin-right: 10px;
-  padding-left:5px;
-  padding-top: 15px;
+  border-width: 10px;
+  border-color: #70db70;
+  border-radius: 10px;
+}
+/*.description{
+  border-style: solid;
+}*/
+.padding{
+  padding-left: 20px;
+  padding-top:5px;
 }
 span {
   font-weight: bold;
@@ -59,12 +80,12 @@ span {
   text-align:center;
 }
 .top{
-  height: 230px;
+  height: 200px;
   width: auto;
-  border-style: none;
+  border-style: dotted;
 }
 .bottom {
-  height:450px;
+  height:300px;
   width: auto;
   border-style: dotted;
   /*position: relative;
@@ -88,10 +109,41 @@ span {
 
 .emails {
   border-style: none;
-  margin-top: 300px;
-  margin-left: 100px;
+  margin-left: 200px;
+
 }
 .button2 {
   margin-left: 400px;
   float: right;
+}
+.sdescription {
+  border-style: solid;
+  border-width: 10px;
+  border-color: #4d94ff;
+  height: 150px;
+  width: 400px ;
+  float: right;
+  margin-right: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.tdescription {
+  border-style: solid;
+  border-width: 10px;
+  border-color: #47d147;
+  height: 150px;
+  width: 400px ;
+  float: right;
+  margin-right: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+#desc{
+  font-size: 20px;
+  font-family: 'Voltaire', sans-serif;
+
+}
+#infos{
+  font-size: 20px;
+  padding-left: 5px;
 }

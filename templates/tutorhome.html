@@ -17,23 +17,26 @@
       <img class="profile" src="../static_files/android.png">
     </div>
 
-    <div class="info">
-      <p>University: {{ university }} </p>
-      <p>Major: {{ major }} </p>
-      <p>Grade Level: {{ year }} </p>
+    <div class="tinfo">
+      <p id="infos"><span>University:</span> {{ university }} </p>
+      <p id="infos"><span>Major: </span>{{ major }} </p>
+      <p id="infos"><span>Grade Level:</span> {{ year }} </p>
     </div>
 
     <div class="name">
-      <p> {{ name }} </p>
+      <p><b> {{ name }}</b> </p>
     </div>
   </div>
 
   <div class="bottom">
-
+    <div class= "tdescription">
+      <p id="desc"><b>About Me</b>: <br>{{description}} </p>
+    </div>
   </div>
-
+  <form method="get" action="edit">
+      <button class="edit" type="submit">Edit Profile</button>
+  </form>
 </div>
-
 
 </section>
 </body>
