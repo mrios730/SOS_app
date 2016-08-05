@@ -13,31 +13,44 @@
   </a>
 </div>
 <div class="pagewrap">
+
+<div class="grey">
+  <div class="name">
+    <p><h1> {{name}} </h1></p>
+  </div>
+</div>
+<div class="top">
   <img class="profile" src="../static_files/android.png">
 
-  <!-- <div class="top"> -->
-    <!-- <img class="profile" src="../static_files/android.png"> -->
-    <div class="sinfo">
-      <p id="infos"><span>University</span>: {{ school }} </p>
-      <p id="infos"><span>Major</span>: {{ major }} </p>
-      <p id="infos"><span>Grade Level</span>: {{ year }} </p>
-    </div>
+</div>
 
-    <div class="name">
-      <p> {{name}} </p>
-    </div>
-  <!-- </div> -->
+<div class="grey">
+  <h1>Information</h>
+</div>
 
 
-  <div class="bottom">
-    <div class= "sdescription">
-      <p id="desc"><!--<b>About Me</b>--> <br>{{description}} </p>
-    </div>
-  </div>
+<div class="sinfo">
+  <p id="infos"><span>University</span>: {{ school }} </p>
+  <p id="infos"><span>Major</span>: {{ major }} </p>
+  <p id="infos"><span>Grade Level</span>: {{ year }} </p>
+</div>
+
+<div class="grey">
+  <h1>About Me:</h1>
+</div>
+
+<div class= "sdescription">
+    <p id="desc">< {{description}} </p>
+</div>
+
+<div class="grey">
+</div>
+
 <form method="get" action="edit">
 <button class="edit" type="Submit" value="Edit Profile Picture"> Edit Profile </button>
 </form>
+
 </div>
-</form>
+
 </body>
 </html>

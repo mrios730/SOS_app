@@ -15,6 +15,7 @@ textarea {
   width: auto;
   height: 50px;
   background-color: #7ACAF6;
+  margin-bottom: 5px;
 }
 .theader{
   width: auto;
@@ -31,40 +32,43 @@ textarea {
 .profile {
   height: 150px;
   width: 150px;
-  border-style: none;
-  /*float: left;*/
-  /*margin-left: 5px;
-  margin-top: 10px;*/
+  border-style:solid;
   margin-bottom: 15px;
+
   margin: auto;
+
 
 }
 .sinfo{
   height: 150px;
-  width: 400px;
+  width: auto;
   border-style: solid;
   margin:auto;
-  /*float: right;*/
-  /*margin-top: 10px;
-  margin-right: 10px;*/
   border-width: 10px;
-  border-color: #7ACAF6;
-  border-radius: 10px;
+  background-color: #7ACAF6;
+  border-color: transparent;
+}
+.grey {
+  padding-top: 1px;
+  width: auto;
+  height: 50px;
+  background-color: 	#eeedef;
+  text-align: center;
+  padding-bottom: 6px;
+
+
 }
 .tinfo{
   height: 150px;
-  width: 400px;
+  width: auto;
   border-style: solid;
-  float: right;
-  margin-top: 10px;
-  margin-right: 10px;
+  margin:auto;
   border-width: 10px;
-  border-color: #70db70;
-  border-radius: 10px;
+  background-color: #70db70;
+  border-color: transparent;
+
 }
-/*.description{
-  border-style: solid;
-}*/
+
 .padding{
   padding-left: 20px;
   padding-top:5px;
@@ -74,22 +78,22 @@ span {
 }
 
 .name{
-  font-size: 20px;
-  /*float: left;*/
-  /*margin-left: 20px;*/
+
   text-align:center;
+
 }
 .top{
-  height: 200px;
+  height: 170px;
   width: auto;
-  border-style: dotted;
+  border-style:none;
+  text-align: center;
+  padding-top: 10px;
 }
 .bottom {
   height:300px;
   width: auto;
   border-style: dotted;
-  /*position: relative;
-  visibility: visible;*/
+
 }
 .logo {
   width: 100px;
@@ -109,7 +113,7 @@ span {
 
 .emails {
   border-style: none;
-  margin-left: 200px;
+  /*margin-left: 200px;*/
 
 }
 .button2 {
@@ -117,26 +121,25 @@ span {
   float: right;
 }
 .sdescription {
-  border-style: solid;
-  border-width: 10px;
-  border-color: #4d94ff;
   height: 150px;
-  width: 400px ;
-  float: right;
-  margin-right: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
+  width: auto;
+  border-style: solid;
+  margin:auto;
+  border-width: 10px;
+  background-color: #4d94ff;
+  border-color: transparent;
+
+
 }
 .tdescription {
-  border-style: solid;
-  border-width: 10px;
-  border-color: #47d147;
   height: 150px;
-  width: 400px ;
-  float: right;
-  margin-right: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
+  width: auto;
+  border-style: solid;
+  margin:auto;
+  border-width: 10px;
+  background-color: #47d147;
+  border-color: transparent;
+
 }
 #desc{
   font-size: 20px;

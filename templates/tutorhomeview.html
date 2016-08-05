@@ -3,39 +3,53 @@
   <title>
   </title>
 <link rel="stylesheet" type"text/css" href="../css/studentprofile.css">
+</head>
+
 <body>
 <section class="clearfix">
-  <div class="theader">
-    <img class="logo" src="../static_files/logo.png">
-
-  </div>
+<div class="theader">
+  <a href="homepage">
+  <img class="logo" src="../static_files/logo.png">
+  </a>
+</div>
 <div class="pagewrap">
 
-  <div class="top">
-    <div class="profile">
-      <img class="profile" src="../static_files/android.png">
-    </div>
-
-    <div class="tinfo">
-      <p class="padding"><span>University</span>: {{ tutor.school }} </p>
-      <p class="padding"><span>Major</span>: {{ tutor.major }} </p>
-      <p class="padding"><span>GradeLevel</span>: {{ tutor.year }} </p>
-    </div>
-
-    <div class="name">
-    <p> <span>{{tutor.name}}</span> </p>
-    </div>
+<div class="grey">
+  <div class="name">
+    <p><h1> {{name}} </h1></p>
   </div>
+</div>
+<div class="top">
+  <img class="profile" src="../static_files/android.png">
 
-  <div class="bottom">
-    <div class="tdescription">
-    {{tutor.description}}
-    </div>
+</div>
+
+<div class="grey">
+  <h1>Information</h>
+</div>
+
+
+<div class="tinfo">
+  <p id="infos"><span>University</span>: {{ school }} </p>
+  <p id="infos"><span>Major</span>: {{ major }} </p>
+  <p id="infos"><span>Grade Level</span>: {{ year }} </p>
+</div>
+
+<div class="grey">
+  <h1>About Me:</h1>
+</div>
+
+<div class= "tdescription">
+    <p id="desc">< {{description}} </p>
+</div>
+
+<div class="grey">
+</div>
 
     <div class="emails">
 
     <form method="post" action="send_mail">
-        <p><textarea placeholder="Send this tutor an email!" rows="4" cols="50" name="email"></textarea>
+        <p><textarea placeholder="Send this tutor an email!" rows="4" cols="96" name="email" margin="auto"></textarea>
             <button class="button" type="submit" onclick="alert('Email Sent!)">Send Email!</button></p>
         <input type="hidden" name="id" value="{{tutor.email}}">
     </form>
